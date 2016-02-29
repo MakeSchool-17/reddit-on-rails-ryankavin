@@ -1,3 +1,16 @@
+# As a user, I want to
+1. subreddit
+
+
+- post content to a subreddit
+- edit posts I've added to a subreddit
+- delete posts I've added to a subreddit
+ 
+
+
+
+
+
 ## sign up validation
     username
     password

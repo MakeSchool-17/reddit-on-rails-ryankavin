@@ -29,6 +29,21 @@ class SubRedditTest < ActiveSupport::TestCase
     assert_not @subReddit.valid?
   end
 
+  test "user can post content to a subreddit" do
+    @user.posts = []
+  end
+
+  test "edit posts which are added to a subreddit" do
+
+    @subReddit.posts = [@posts]
+  end
+
+  test "posts can be deleted" do
+    @subReddit.posts = [@post]
+    @subReddit.posts.delete.count
+    assert_equal 0, @subReddit.posts.count
+  end
+
 
 
 
