@@ -31,17 +31,24 @@ class SubRedditTest < ActiveSupport::TestCase
 
   test "user can post content to a subreddit" do
     @user.posts = []
+    assert false
   end
 
   test "edit posts which are added to a subreddit" do
 
     @subReddit.posts = [@posts]
+    assert false
   end
 
   test "posts can be deleted" do
     @subReddit.posts = [@post]
     @subReddit.posts.delete.count
     assert_equal 0, @subReddit.posts.count
+    assert false
+  end
+
+  test "subreddit can query users" do
+    assert true
   end
 
 
