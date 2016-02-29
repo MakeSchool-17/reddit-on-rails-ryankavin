@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'rails'
+gem 'rails',        '4.2.5.1'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -13,7 +13,7 @@ gem 'sdoc'
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'
-  gem 'web-console'
+  gem 'web-console', '2.0.0.beta3'
   gem 'spring'
 end
 
@@ -21,6 +21,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'mini_backtrace'
   gem 'guard-minitest'
+  gem 'guard'
 end
 
 group :production do
