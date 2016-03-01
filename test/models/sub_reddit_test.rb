@@ -29,9 +29,21 @@ class SubRedditTest < ActiveSupport::TestCase
     assert_not @subReddit.valid?
   end
 
-  test "subreddit can query users" do
-    
-  end
+  # test "subreddit can query users" do
+  #
+  # end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
