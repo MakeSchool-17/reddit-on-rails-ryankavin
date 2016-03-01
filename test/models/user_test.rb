@@ -3,6 +3,8 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(username: "Ryan", email: "example@makeschool.com", password: "foobar", password_confirmation: "foobar")
+    @subReddit = SubReddit.new(title: "Title", description: "Description.")
+    @post = Post.new(title: "Placeholder Title", content: "Lorem ipsum...")
   end
 
   test "should be valid" do
@@ -71,7 +73,40 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  
+  test "User can post to a subreddit" do
+    @subReddit.posts = []
+    @user.post
+    assert_equal 1, @subReddit.posts.count
+  end
+
+  test "User can edit a post in a subreddit" do
+    @subReddit.posts = [@post]
+    @user.edit
+    assert_equal 1, @subReddit.posts.count
+  end
+
+  test "User can delete a post in a subreddit" do
+    @subReddit.posts = [@post]
+    @user.delete
+    assert_equal 0, @subReddit.posts.count
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
