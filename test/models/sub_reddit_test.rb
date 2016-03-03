@@ -2,56 +2,81 @@ require 'test_helper'
 
 class SubRedditTest < ActiveSupport::TestCase
   def setup
-    @subReddit = SubReddit.new(title: "Sample Title", description: "Sample Description")
+    @user = User.new(username: "Ryan", email: "example@makeschool.com", password: "foobar", password_confirmation: "foobar")
+    @sub_reddit = SubReddit.new(title: "Sample Title", description: "Sample Description")
+    @post = Post.new(title: "Placeholder Title", content: "Lorem ipsum...")
   end
 
   test "subReddit should be valid" do
-    assert @subReddit.valid?
+    assert @sub_reddit.valid?
   end
 
   test "title should be present" do
-    @subReddit.title = "   "
-    assert_not @subReddit.valid?
+    @sub_reddit.title = "   "
+    assert_not @sub_reddit.valid?
   end
 
   test "description should be present" do
-    @subReddit.description = "  "
-    assert_not @subReddit.valid?
+    @sub_reddit.description = "  "
+    assert_not @sub_reddit.valid?
   end
 
   test "title has a limit in length" do
-    @subReddit.title = "a" * 101
-    assert_not @subReddit.valid?
+    @sub_reddit.title = "a" * 22
+    assert_not @sub_reddit.valid?
+  end
+
+  test "title cannot contain any special character" do
+    invalid_titles = ["&&wrongexample3**"]
+    invalid_titles.each do |invalid_title|
+      @sub_reddit.title = invalid_title
+      assert_not @sub_reddit.valid?, "#{invalid_title.inspect} should be invalid"
+    end
+  end
+
+  test "Subreddit title should be unique" do
+    duplicate_subReddit = @sub_reddit.dup
+    duplicate_subReddit.title = @sub_reddit.title.upcase
+    @sub_reddit.save
+    assert_not duplicate_subReddit.valid?
   end
 
   test "description has a limit in length" do
-    @subReddit.description = "a" * 201
-    assert_not @subReddit.valid?
+    @sub_reddit.description = "a" * 201
+    assert_not @sub_reddit.valid?
   end
 
-  test "user can post content to a subreddit" do
-    @user.posts = []
-    assert false
+  test "User can post to a subreddit" do
+    @post.sub_reddit = @sub_reddit
+    @post.save
+    assert_equal 1, @sub_reddit.reload.posts.count
   end
 
-  test "edit posts which are added to a subreddit" do
+  test "User can edit a post in a subreddit" do
+    @post.sub_reddit = @sub_reddit
+    @post.save
 
-    @subReddit.posts = [@posts]
-    assert false
+    old_post = Post.find(@post.id)
+
+    @post.title = "New Title"
+    @post.save
+
+    assert_not_equal @post.title, old_post.title, "Post titles should not be equal"
   end
 
-  test "posts can be deleted" do
-    @subReddit.posts = [@post]
-    @subReddit.posts.delete.count
-    assert_equal 0, @subReddit.posts.count
-    assert false
+  test "User can delete a post in a subreddit" do
+    @post.sub_reddit = @sub_reddit
+    @post.save
+
+    @post.delete
+  
+    assert_equal 0, @sub_reddit.reload.posts.count, "Post count should be equal to zero"
   end
 
-  test "subreddit can query users" do
-    assert true
+  test "User can access subreddit by subreddit title" do
+    response = get sub_reddit_path(@sub_reddit)
+
+    assert_equal 200, response.status_code, "Response status should be correct"
   end
-
-
-
 
 end
