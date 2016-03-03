@@ -68,12 +68,13 @@ class SubRedditTest < ActiveSupport::TestCase
     @post.sub_reddit = @sub_reddit
     @post.save
 
-    @post.delete
-  
-    assert_equal 0, @sub_reddit.reload.posts.count, "Post count should be equal to zero"
+    assert_difference '@sub_reddit.reload.posts.count', -1 do
+      @post.delete
+    end
   end
 
   test "User can access subreddit by subreddit title" do
+    # this kind of test is useful for controllers but not for models
     response = get sub_reddit_path(@sub_reddit)
 
     assert_equal 200, response.status_code, "Response status should be correct"
