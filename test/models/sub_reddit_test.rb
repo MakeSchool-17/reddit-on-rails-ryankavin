@@ -79,8 +79,22 @@ class SubRedditTest < ActiveSupport::TestCase
     assert_equal "sampletitle", slug
   end
 
+  test "Subreddit slug field filled after create" do
+    sub_reddit_params = {title: "Test Title", description: "Test Description"}
+    sub_reddit = SubReddit.create(sub_reddit_params)
 
+    assert_not nil, sub_reddit.slug
+  end
 
+  test "Subreddit slug field updated after update" do
+    sub_reddit_params = {title: "Test Title", description: "Test Description"}
+    sub_reddit = SubReddit.create(sub_reddit_params)
+
+    old_slug = sub_reddit.slug
+    sub_reddit.update(title: "New Title")
+
+    assert_not_equal sub_reddit.slug, old_slug
+  end
   # test "User can access subreddit by subreddit title" do
   #   # this kind of test is useful for controllers but not for models
   #   response = get sub_reddit_path(@sub_reddit)

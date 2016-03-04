@@ -31,4 +31,10 @@ class SubRedditsControllerTest < ActionController::TestCase
     assert_equal @sub_reddit, sub_reddit
   end
 
+  test "Incorrect subreddit name should throw 404 error" do
+    get :show_by_slug, slug: 'titlenotexist'
+    sub_reddit = assigns(:sub_reddit)
+    assert_response :missing
+    assert_equal nil, sub_reddit
+  end
 end

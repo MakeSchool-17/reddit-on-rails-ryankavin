@@ -4,13 +4,16 @@ class SubRedditsController < ApplicationController
 	end
 
 	def show
-		#@sub_reddit
 	end
 
 	def show_by_slug
 		slug = params[:slug]
 		@sub_reddit = SubReddit.find_by(slug: slug)
-		render 'sub_reddits/show'
+		if @sub_reddit != nil 
+			render 'sub_reddits/show'
+		else
+			head :not_found
+		end
 	end
 
 	def new

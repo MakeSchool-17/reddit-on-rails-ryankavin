@@ -2,6 +2,8 @@ require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
   def setup
+    @user = User.new(username: "Ryan", email: "example@makeschool.com", password: "foobar", password_confirmation: "foobar")
+    @sub_reddit = SubReddit.new(title: "Sample Title", description: "Sample Description")
     @post = Post.new(title: "Title", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
   end
 
@@ -28,4 +30,5 @@ class PostTest < ActiveSupport::TestCase
     @post.content = "a" * 1001
     assert_not @post.valid?
   end
+
 end
