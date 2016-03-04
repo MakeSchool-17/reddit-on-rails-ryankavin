@@ -8,7 +8,6 @@ class SubRedditsController < ApplicationController
 	end
 
 	def show_by_slug
-		debugger
 		slug = params[:slug]
 		@sub_reddit = SubReddit.find_by(slug: slug)
 		render 'sub_reddits/show'

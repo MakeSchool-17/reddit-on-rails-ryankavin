@@ -27,9 +27,8 @@ class SubRedditsControllerTest < ActionController::TestCase
   test "Get subreddit by slug" do
     get :show_by_slug, slug: @sub_reddit.slug
     sub_reddit = assigns(:sub_reddit)
-    debugger
-    assert_response :success 
-    assert_equal @sub_reddit, sub_reddit   
-  end 
+    assert_response :success
+    assert_equal @sub_reddit, sub_reddit
+  end
 
 end

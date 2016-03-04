@@ -11525,3 +11525,628 @@ PostTest: test_content_has_limit_in_length
 PostTest: test_content_should_be_present
 ----------------------------------------
   [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.8ms)[0m  [1mDELETE FROM "comments"[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO "comments" ("content", "created_at", "updated_at", "id") VALUES ('MyString', '2016-03-04 02:16:55', '2016-03-04 02:16:55', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "comments" ("content", "created_at", "updated_at", "id") VALUES ('MyString', '2016-03-04 02:16:55', '2016-03-04 02:16:55', 298486374)[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "posts"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "posts" ("title", "content", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', '2016-03-04 02:16:55', '2016-03-04 02:16:55', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "posts" ("title", "content", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', '2016-03-04 02:16:55', '2016-03-04 02:16:55', 298486374)
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "sub_reddits"[0m
+  [1m[35mFixture Delete (0.2ms)[0m  DELETE FROM "users"
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------------------
+SubRedditsControllerTest: test_index_shows_all_subreddits
+---------------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSubReddit Exists (0.5ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:16:55.967989"], ["updated_at", "2016-03-04 02:16:55.967989"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SubRedditsController#index as HTML
+  Rendered sub_reddits/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 640ms (Views: 640.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------------------
+SubRedditsControllerTest: test_Get_subreddit_by_slug
+----------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:16:56.616134"], ["updated_at", "2016-03-04 02:16:56.616134"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SubRedditsController#show_by_slug as HTML
+  Parameters: {"slug"=>"sampletitle"}
+Completed 500 Internal Server Error in 18418ms (ActiveRecord: 0.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.6ms)[0m  [1mDELETE FROM "comments"[0m
+  [1m[35mFixture Insert (0.4ms)[0m  INSERT INTO "comments" ("content", "created_at", "updated_at", "id") VALUES ('MyString', '2016-03-04 02:17:19', '2016-03-04 02:17:19', 980190962)
+  [1m[36mFixture Insert (0.9ms)[0m  [1mINSERT INTO "comments" ("content", "created_at", "updated_at", "id") VALUES ('MyString', '2016-03-04 02:17:19', '2016-03-04 02:17:19', 298486374)[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "posts"
+  [1m[36mFixture Insert (0.0ms)[0m  [1mINSERT INTO "posts" ("title", "content", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', '2016-03-04 02:17:19', '2016-03-04 02:17:19', 980190962)[0m
+  [1m[35mFixture Insert (0.0ms)[0m  INSERT INTO "posts" ("title", "content", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', '2016-03-04 02:17:19', '2016-03-04 02:17:19', 298486374)
+  [1m[36mFixture Delete (0.0ms)[0m  [1mDELETE FROM "sub_reddits"[0m
+  [1m[35mFixture Delete (0.1ms)[0m  DELETE FROM "users"
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+--------------------------------------
+PostTest: test_title_should_be_present
+--------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------
+PostTest: test_content_should_be_present
+----------------------------------------
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------
+PostTest: test_post_should_be_valid
+-----------------------------------
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------
+PostTest: test_title_has_limit_in_length
+----------------------------------------
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+------------------------------------------
+PostTest: test_content_has_limit_in_length
+------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------
+CommentTest: test_comment_should_be_valid
+-----------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-------------------------------------------
+CommentTest: test_content_should_be_present
+-------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------
+CommentTest: test_content_has_limit_in_length
+---------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+--------------------------------------
+UserTest: test_email_should_be_present
+--------------------------------------
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('    ') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------------------
+UserTest: test_email_validation_should_reject_invalid_addresses
+---------------------------------------------------------------
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user@example,com') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user_at_foo.org') LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user.name@example.') LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('foo@bar_baz.com') LIMIT 1[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('foo@bar+baz.com') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------------------------
+UserTest: test_password_should_be_present(meaning_no_blank)
+-----------------------------------------------------------
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+UserTest: test_Password_should_have_a_minimum_length
+----------------------------------------------------
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+------------------------------
+UserTest: test_should_be_valid
+------------------------------
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------------
+UserTest: test_email_validation_should_accept_valid_addresses
+-------------------------------------------------------------
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user@example.com') LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('USER@foo.COM') LIMIT 1[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('A_US-ER@foo.bar.org') LIMIT 1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('first.last@foo.jp') LIMIT 1[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('alice+bob@baz.cn') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-------------------------------------
+UserTest: test_email_should_be_unique
+-------------------------------------
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["username", "Ryan"], ["email", "example@makeschool.com"], ["password_digest", "$2a$04$BTpk6yYJcXILRCdRV8FXQ.IOtiTmzW2Hetx4JdnTld6glsEO.snD2"], ["created_at", "2016-03-04 02:17:19.766101"], ["updated_at", "2016-03-04 02:17:19.766101"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('EXAMPLE@MAKESCHOOL.COM') LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+UserTest: test_email_has_a_limit_in_length
+------------------------------------------
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-----------------------------------------
+UserTest: test_username_should_be_present
+-----------------------------------------
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------
+UserTest: test_email_is_always_saved_in_lower-case
+--------------------------------------------------
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('FoO@ExAmPlE.cOm') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["username", "Ryan"], ["email", "foo@example.com"], ["password_digest", "$2a$04$8GkDVvkjpwjlhL.YAXP3Ee2kbAfc2ncUfngnEZ74yAK3rFKWTuOLm"], ["created_at", "2016-03-04 02:17:19.780289"], ["updated_at", "2016-03-04 02:17:19.780289"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+---------------------------------------------
+UserTest: test_username_has_a_limit_in_length
+---------------------------------------------
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------------------
+SubRedditTest: test_Subreddit_path_generated_correctly
+------------------------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------
+SubRedditTest: test_title_has_a_limit_in_length
+-----------------------------------------------
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('aaaaaaaaaaaaaaaaaaaaaa') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-------------------------------------------
+SubRedditTest: test_title_should_be_present
+-------------------------------------------
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('   ') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------------
+SubRedditTest: test_User_can_delete_a_post_in_a_subreddit
+---------------------------------------------------------
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:17:19.813441"], ["updated_at", "2016-03-04 02:17:19.813441"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("title", "content", "sub_reddit_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Placeholder Title"], ["content", "Lorem ipsum..."], ["sub_reddit_id", 1], ["created_at", "2016-03-04 02:17:19.814513"], ["updated_at", "2016-03-04 02:17:19.814513"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mSubReddit Load (0.1ms)[0m  [1mSELECT  "sub_reddits".* FROM "sub_reddits" WHERE "sub_reddits"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "posts" WHERE "posts"."sub_reddit_id" = ?  [["sub_reddit_id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 980190963]]
+  [1m[35mSubReddit Load (0.0ms)[0m  SELECT  "sub_reddits".* FROM "sub_reddits" WHERE "sub_reddits"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "posts" WHERE "posts"."sub_reddit_id" = ?[0m  [["sub_reddit_id", 1]]
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+---------------------------------------------
+SubRedditTest: test_subReddit_should_be_valid
+---------------------------------------------
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-------------------------------------------------
+SubRedditTest: test_description_should_be_present
+-------------------------------------------------
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------------------------
+SubRedditTest: test_User_can_post_to_a_subreddit
+------------------------------------------------
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:17:19.839317"], ["updated_at", "2016-03-04 02:17:19.839317"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("title", "content", "sub_reddit_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Placeholder Title"], ["content", "Lorem ipsum..."], ["sub_reddit_id", 1], ["created_at", "2016-03-04 02:17:19.840212"], ["updated_at", "2016-03-04 02:17:19.840212"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mSubReddit Load (0.0ms)[0m  [1mSELECT  "sub_reddits".* FROM "sub_reddits" WHERE "sub_reddits"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM "posts" WHERE "posts"."sub_reddit_id" = ?  [["sub_reddit_id", 1]]
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------------------
+SubRedditTest: test_description_has_a_limit_in_length
+-----------------------------------------------------
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------
+SubRedditTest: test_User_can_edit_a_post_in_a_subreddit
+-------------------------------------------------------
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:17:19.847996"], ["updated_at", "2016-03-04 02:17:19.847996"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("title", "content", "sub_reddit_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Placeholder Title"], ["content", "Lorem ipsum..."], ["sub_reddit_id", 1], ["created_at", "2016-03-04 02:17:19.848847"], ["updated_at", "2016-03-04 02:17:19.848847"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mPost Load (0.1ms)[0m  [1mSELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1[0m  [["id", 980190963]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "posts" SET "title" = ?, "updated_at" = ? WHERE "posts"."id" = ?[0m  [["title", "New Title"], ["updated_at", "2016-03-04 02:17:19.852194"], ["id", 980190963]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------------------
+SubRedditTest: test_Subreddit_title_should_be_unique
+----------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:17:19.857511"], ["updated_at", "2016-03-04 02:17:19.857511"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mSubReddit Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('SAMPLE TITLE') LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+SubRedditTest: test_title_cannot_contain_any_special_character
+--------------------------------------------------------------
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('&&wrongexample3**') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------------------
+SubRedditsControllerTest: test_Get_subreddit_by_slug
+----------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSubReddit Exists (0.2ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:17:19.917607"], ["updated_at", "2016-03-04 02:17:19.917607"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SubRedditsController#show_by_slug as HTML
+  Parameters: {"slug"=>"sampletitle"}
+  [1m[36mSubReddit Load (0.1ms)[0m  [1mSELECT  "sub_reddits".* FROM "sub_reddits" WHERE "sub_reddits"."slug" = ? LIMIT 1[0m  [["slug", "sampletitle"]]
+  Rendered sub_reddits/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 179ms (Views: 177.4ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------------
+SubRedditsControllerTest: test_new_shows_create_subreddit
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSubReddit Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:17:20.105298"], ["updated_at", "2016-03-04 02:17:20.105298"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SubRedditsController#new as HTML
+  Rendered sub_reddits/new.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 3ms (Views: 3.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------------
+SubRedditsControllerTest: test_index_shows_all_subreddits
+---------------------------------------------------------
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:17:20.113015"], ["updated_at", "2016-03-04 02:17:20.113015"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SubRedditsController#index as HTML
+  Rendered sub_reddits/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 3ms (Views: 3.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------
+SubRedditsControllerTest: test_show_shows_subreddit
+---------------------------------------------------
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:17:20.121139"], ["updated_at", "2016-03-04 02:17:20.121139"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SubRedditsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered sub_reddits/show.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.9ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "sub_reddit_id" integer) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "sub_reddits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "slug" varchar) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (1.5ms)[0m  CREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160304013129')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160228235126')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160228235225')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160228235249')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160229002422')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160229020440')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160229191503')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160303022218')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "sub_reddit_id" integer) 
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "sub_reddits" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "slug" varchar) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_sub_reddits_on_title" ON "sub_reddits" ("title")[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "password_digest" varchar) 
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160304022844')[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160228235126')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160228235225')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160228235249')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160229002422')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160229020440')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160229191503')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160303022218')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160304013129')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mFixture Delete (0.3ms)[0m  DELETE FROM "comments"
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "comments" ("content", "created_at", "updated_at", "id") VALUES ('MyString', '2016-03-04 02:29:36', '2016-03-04 02:29:36', 980190962)[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "comments" ("content", "created_at", "updated_at", "id") VALUES ('MyString', '2016-03-04 02:29:36', '2016-03-04 02:29:36', 298486374)
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "posts"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "posts" ("title", "content", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', '2016-03-04 02:29:36', '2016-03-04 02:29:36', 980190962)
+  [1m[36mFixture Insert (0.0ms)[0m  [1mINSERT INTO "posts" ("title", "content", "created_at", "updated_at", "id") VALUES ('MyString', 'MyString', '2016-03-04 02:29:36', '2016-03-04 02:29:36', 298486374)[0m
+  [1m[35mFixture Delete (0.6ms)[0m  DELETE FROM "sub_reddits"
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "users"[0m
+  [1m[35m (2.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------------------
+UserTest: test_email_validation_should_accept_valid_addresses
+-------------------------------------------------------------
+  [1m[35mUser Exists (0.2ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user@example.com') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('USER@foo.COM') LIMIT 1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('A_US-ER@foo.bar.org') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('first.last@foo.jp') LIMIT 1[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('alice+bob@baz.cn') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+---------------------------------------------
+UserTest: test_username_has_a_limit_in_length
+---------------------------------------------
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------
+UserTest: test_email_is_always_saved_in_lower-case
+--------------------------------------------------
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('FoO@ExAmPlE.cOm') LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["username", "Ryan"], ["email", "foo@example.com"], ["password_digest", "$2a$04$XqngRGkbohd0LLUSujQ.EOAGU3PJO/oshXk5yeqd7MJwSPbT4UK1y"], ["created_at", "2016-03-04 02:29:36.960752"], ["updated_at", "2016-03-04 02:29:36.960752"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------------------
+UserTest: test_Password_should_have_a_minimum_length
+----------------------------------------------------
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------
+UserTest: test_username_should_be_present
+-----------------------------------------
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-------------------------------------
+UserTest: test_email_should_be_unique
+-------------------------------------
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["username", "Ryan"], ["email", "example@makeschool.com"], ["password_digest", "$2a$04$CD9N4SjdQnA7eHwCzdt5w.OUzgsftG/f4pxp15twlXybCkmAZ4ggy"], ["created_at", "2016-03-04 02:29:36.979306"], ["updated_at", "2016-03-04 02:29:36.979306"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('EXAMPLE@MAKESCHOOL.COM') LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+------------------------------
+UserTest: test_should_be_valid
+------------------------------
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------------------------
+UserTest: test_email_validation_should_reject_invalid_addresses
+---------------------------------------------------------------
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user@example,com') LIMIT 1[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user_at_foo.org') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('user.name@example.') LIMIT 1[0m
+  [1m[35mUser Exists (0.0ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('foo@bar_baz.com') LIMIT 1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('foo@bar+baz.com') LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+UserTest: test_email_should_be_present
+--------------------------------------
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('    ') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+------------------------------------------
+UserTest: test_email_has_a_limit_in_length
+------------------------------------------
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------------
+UserTest: test_password_should_be_present(meaning_no_blank)
+-----------------------------------------------------------
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER('example@makeschool.com') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------
+CommentTest: test_comment_should_be_valid
+-----------------------------------------
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-------------------------------------------
+CommentTest: test_content_should_be_present
+-------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------
+CommentTest: test_content_has_limit_in_length
+---------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+---------------------------------------------------
+SubRedditsControllerTest: test_show_shows_subreddit
+---------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:29:37.066390"], ["updated_at", "2016-03-04 02:29:37.066390"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SubRedditsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered sub_reddits/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 182ms (Views: 181.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+---------------------------------------------------------
+SubRedditsControllerTest: test_new_shows_create_subreddit
+---------------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:29:37.255581"], ["updated_at", "2016-03-04 02:29:37.255581"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SubRedditsController#new as HTML
+  Rendered sub_reddits/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+----------------------------------------------------
+SubRedditsControllerTest: test_Get_subreddit_by_slug
+----------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:29:37.265755"], ["updated_at", "2016-03-04 02:29:37.265755"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by SubRedditsController#show_by_slug as HTML
+  Parameters: {"slug"=>"sampletitle"}
+  [1m[36mSubReddit Load (0.1ms)[0m  [1mSELECT  "sub_reddits".* FROM "sub_reddits" WHERE "sub_reddits"."slug" = ? LIMIT 1[0m  [["slug", "sampletitle"]]
+  Rendered sub_reddits/show.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 7ms (Views: 2.7ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------------
+SubRedditsControllerTest: test_index_shows_all_subreddits
+---------------------------------------------------------
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSubReddit Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:29:37.277720"], ["updated_at", "2016-03-04 02:29:37.277720"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by SubRedditsController#index as HTML
+  Rendered sub_reddits/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 4ms (Views: 4.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------
+PostTest: test_title_has_limit_in_length
+----------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+------------------------------------------
+PostTest: test_content_has_limit_in_length
+------------------------------------------
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------
+PostTest: test_title_should_be_present
+--------------------------------------
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+----------------------------------------
+PostTest: test_content_should_be_present
+----------------------------------------
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------
+PostTest: test_post_should_be_valid
+-----------------------------------
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------------------
+SubRedditTest: test_User_can_delete_a_post_in_a_subreddit
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:29:37.304992"], ["updated_at", "2016-03-04 02:29:37.304992"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "posts" ("title", "content", "sub_reddit_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Placeholder Title"], ["content", "Lorem ipsum..."], ["sub_reddit_id", 1], ["created_at", "2016-03-04 02:29:37.306137"], ["updated_at", "2016-03-04 02:29:37.306137"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mSubReddit Load (0.1ms)[0m  [1mSELECT  "sub_reddits".* FROM "sub_reddits" WHERE "sub_reddits"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "posts" WHERE "posts"."sub_reddit_id" = ?  [["sub_reddit_id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 980190963]]
+  [1m[35mSubReddit Load (0.0ms)[0m  SELECT  "sub_reddits".* FROM "sub_reddits" WHERE "sub_reddits"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "posts" WHERE "posts"."sub_reddit_id" = ?[0m  [["sub_reddit_id", 1]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+SubRedditTest: test_Subreddit_title_should_be_unique
+----------------------------------------------------
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:29:37.330163"], ["updated_at", "2016-03-04 02:29:37.330163"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('SAMPLE TITLE') LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+------------------------------------------------------
+SubRedditTest: test_Subreddit_path_generated_correctly
+------------------------------------------------------
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+-------------------------------------------
+SubRedditTest: test_title_should_be_present
+-------------------------------------------
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('   ') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------------------------
+SubRedditTest: test_title_cannot_contain_any_special_character
+--------------------------------------------------------------
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('&&wrongexample3**') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-------------------------------------------------------
+SubRedditTest: test_User_can_edit_a_post_in_a_subreddit
+-------------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36mSQL (1.8ms)[0m  [1mINSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:29:37.345579"], ["updated_at", "2016-03-04 02:29:37.345579"]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "posts" ("title", "content", "sub_reddit_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "Placeholder Title"], ["content", "Lorem ipsum..."], ["sub_reddit_id", 1], ["created_at", "2016-03-04 02:29:37.349091"], ["updated_at", "2016-03-04 02:29:37.349091"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mPost Load (0.1ms)[0m  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 980190963]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "posts" SET "title" = ?, "updated_at" = ? WHERE "posts"."id" = ?  [["title", "New Title"], ["updated_at", "2016-03-04 02:29:37.351749"], ["id", 980190963]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-------------------------------------------------
+SubRedditTest: test_description_should_be_present
+-------------------------------------------------
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+------------------------------------------------
+SubRedditTest: test_User_can_post_to_a_subreddit
+------------------------------------------------
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "sub_reddits" ("title", "description", "slug", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "sample title"], ["description", "Sample Description"], ["slug", "sampletitle"], ["created_at", "2016-03-04 02:29:37.360504"], ["updated_at", "2016-03-04 02:29:37.360504"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "posts" ("title", "content", "sub_reddit_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "Placeholder Title"], ["content", "Lorem ipsum..."], ["sub_reddit_id", 1], ["created_at", "2016-03-04 02:29:37.362570"], ["updated_at", "2016-03-04 02:29:37.362570"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mSubReddit Load (0.0ms)[0m  SELECT  "sub_reddits".* FROM "sub_reddits" WHERE "sub_reddits"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "posts" WHERE "posts"."sub_reddit_id" = ?[0m  [["sub_reddit_id", 1]]
+  [1m[35m (0.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+---------------------------------------------
+SubRedditTest: test_subReddit_should_be_valid
+---------------------------------------------
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------------
+SubRedditTest: test_title_has_a_limit_in_length
+-----------------------------------------------
+  [1m[36mSubReddit Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('aaaaaaaaaaaaaaaaaaaaaa') LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+-----------------------------------------------------
+SubRedditTest: test_description_has_a_limit_in_length
+-----------------------------------------------------
+  [1m[35mSubReddit Exists (0.1ms)[0m  SELECT  1 AS one FROM "sub_reddits" WHERE LOWER("sub_reddits"."title") = LOWER('Sample Title') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
