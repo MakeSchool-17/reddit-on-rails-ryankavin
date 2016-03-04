@@ -28,8 +28,4 @@ class PostTest < ActiveSupport::TestCase
     @post.content = "a" * 1001
     assert_not @post.valid?
   end
-
-
-
-
 end

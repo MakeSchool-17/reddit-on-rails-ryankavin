@@ -73,11 +73,18 @@ class SubRedditTest < ActiveSupport::TestCase
     end
   end
 
-  test "User can access subreddit by subreddit title" do
-    # this kind of test is useful for controllers but not for models
-    response = get sub_reddit_path(@sub_reddit)
+  test "Subreddit path generated correctly" do
+    path = @sub_reddit.to_param
 
-    assert_equal 200, response.status_code, "Response status should be correct"
+    assert_equal "r/sampletitle", path
   end
+  
+
+  # test "User can access subreddit by subreddit title" do
+  #   # this kind of test is useful for controllers but not for models
+  #   response = get sub_reddit_path(@sub_reddit)
+
+  #   assert_equal 200, response.status_code, "Response status should be correct"
+  # end
 
 end
