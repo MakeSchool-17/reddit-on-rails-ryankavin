@@ -74,11 +74,12 @@ class SubRedditTest < ActiveSupport::TestCase
   end
 
   test "Subreddit path generated correctly" do
-    path = @sub_reddit.to_param
+    slug = @sub_reddit.generate_slug
 
-    assert_equal "r/sampletitle", path
+    assert_equal "sampletitle", slug
   end
-  
+
+
 
   # test "User can access subreddit by subreddit title" do
   #   # this kind of test is useful for controllers but not for models
