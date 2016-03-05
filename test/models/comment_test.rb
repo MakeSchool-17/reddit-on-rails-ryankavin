@@ -32,4 +32,16 @@ class CommentTest < ActiveSupport::TestCase
     assert_equal :comment, child_comment.commentable_type.to_sym
   end
 
+  test "associated children comments should be destroyed" do
+    # debugger
+     @comment.save
+
+     @comment.comments.create!(content: "Lorem ipsum")
+     assert_difference '@comment.comments.count', -1 do
+       @comment.destroy
+     end
+  end
+
+
+
 end
