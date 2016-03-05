@@ -31,4 +31,6 @@ class PostTest < ActiveSupport::TestCase
     assert_not @post.valid?
   end
 
+  
+  
 end
