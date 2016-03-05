@@ -1,6 +1,6 @@
 class SubReddit < ActiveRecord::Base
   has_many :users
-  has_many :posts
+  has_many :posts, dependent: :destroy
   before_save { self.title = title.downcase }
   before_save { self.slug = generate_slug }
   VALID_SUBREDDIT_TITLE_REGEX = /^[\w\s]+$/
