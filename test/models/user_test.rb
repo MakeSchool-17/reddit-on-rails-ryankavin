@@ -91,22 +91,13 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 0, @subReddit.posts.count
   end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  test "associated posts should be destroyed" do
+     @user.save
+     @user.posts.create!(title: "Title", content: "Lorem ipsum")
+     assert_difference 'Post.count', -1 do
+       @user.destroy
+     end
+  end
 
 
 

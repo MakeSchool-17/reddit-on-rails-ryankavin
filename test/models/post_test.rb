@@ -2,6 +2,8 @@ require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
   def setup
+    @user = User.new(username: "Ryan", email: "example@makeschool.com", password: "foobar", password_confirmation: "foobar")
+    @sub_reddit = SubReddit.new(title: "Sample Title", description: "Sample Description")
     @post = Post.new(title: "Title", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
   end
 
@@ -29,7 +31,13 @@ class PostTest < ActiveSupport::TestCase
     assert_not @post.valid?
   end
 
-
+  test "associated comments should be destroyed" do
+     @post.save
+     @post.comments.create!(content: "Lorem ipsum")
+     assert_difference 'Comment.count', -1 do
+       @post.destroy
+     end
+  end
 
 
 end

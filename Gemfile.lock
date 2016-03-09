@@ -41,6 +41,8 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.2.0.0)
+      sass (~> 3.2)
     builder (3.2.2)
     byebug (8.2.2)
     coderay (1.1.1)
@@ -53,6 +55,7 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.1)
     debug_inspector (0.0.2)
+    docile (1.1.5)
     erubis (2.7.0)
     execjs (2.6.0)
     ffi (1.9.10)
@@ -163,6 +166,11 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     shellany (0.0.1)
+    simplecov (0.11.2)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     slop (3.6.0)
     spring (1.6.4)
     sprockets (3.5.2)
@@ -194,6 +202,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
+  bootstrap-sass
   byebug
   coffee-rails
   guard
@@ -207,6 +216,7 @@ DEPENDENCIES
   rails_12factor
   sass-rails
   sdoc
+  simplecov
   spring
   sqlite3
   turbolinks

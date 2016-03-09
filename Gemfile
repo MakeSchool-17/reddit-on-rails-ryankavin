@@ -10,6 +10,8 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'sdoc'
 gem 'bcrypt'
+gem 'simplecov', :require => false, :group => :test
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'sqlite3'
