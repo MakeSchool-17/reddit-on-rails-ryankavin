@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '3.5.6'
 gem 'cancancan', '~> 1.10'
+gem 'pg',             '0.17.1'
 
 group :production do
   gem 'pg',             '0.17.1'
