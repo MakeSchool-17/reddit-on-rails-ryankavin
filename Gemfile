@@ -16,7 +16,7 @@ gem 'devise', '3.5.6'
 gem 'cancancan', '~> 1.10'
 
 group :production do
-  gem 'pg'
+  gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
   gem 'puma',           '2.11.1'
 end
