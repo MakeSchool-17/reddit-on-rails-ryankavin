@@ -18,4 +18,7 @@ class SubRedditsController < ApplicationController
 
 	def new
 	end
+	
+	def main
+	end
 end
