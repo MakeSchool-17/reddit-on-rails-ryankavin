@@ -1,34 +1,47 @@
 source 'https://rubygems.org'
 
-
-gem 'rails',        '4.2.5.1'
-gem 'sass-rails'
-gem 'uglifier'
-gem 'coffee-rails'
+# Example code change
+gem 'rails', '4.2.2'
+gem 'bootstrap-sass', '3.2.0.0'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-gem 'jbuilder'
-gem 'sdoc'
-gem 'bcrypt'
-gem 'simplecov', :require => false, :group => :test
-gem 'bootstrap-sass'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.0'
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'devise', '3.5.6'
+gem 'cancancan', '~> 1.10'
 
+group :production do
+  gem 'pg',             '0.17.1'
+  gem 'rails_12factor', '0.0.2'
+  gem 'puma',           '2.11.1'
+end
+
+# Use ActiveModel has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
+
+# Use Unicorn as the app server
+# gem 'unicorn'
+
+# Use Capistrano for deployment
+# gem 'capistrano-rails', group: :development
 group :development, :test do
-  gem 'sqlite3'
-  gem 'byebug'
+  gem 'simplecov'
+  gem 'sqlite3',     '1.3.9'
+  gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
-  gem 'spring'
+  gem 'spring',      '1.1.3'
 end
 
 group :test do
-  gem 'minitest-reporters'
-  gem 'mini_backtrace'
-  gem 'guard-minitest'
-  gem 'guard'
-end
-
-group :production do
-  gem 'pg', '0.17.1'
-  gem 'rails_12factor'
-  gem 'puma', '2.11.1'
+  gem 'selenium-webdriver'
+  gem 'capybara-webkit'
+  gem 'capybara'
+  gem 'minitest-reporters', '1.0.5'
+  gem 'mini_backtrace',     '0.1.3'
+  gem 'guard-minitest',     '2.3.1'
 end
