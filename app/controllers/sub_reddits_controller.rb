@@ -6,6 +6,8 @@ class SubRedditsController < ApplicationController
 	end
 
 	def show
+		@sub_reddit = SubReddit.find(params[:id])
+		render json: {status: 200, user: @sub_reddit}
 	end
 
 	def show_by_slug
