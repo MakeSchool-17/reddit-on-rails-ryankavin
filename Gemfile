@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 # Example code change
-gem 'rails', '4.2.2'
+gem 'rails'
+gem 'railties'
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -33,8 +34,8 @@ end
 
 group :test do
   gem 'selenium-webdriver'
-  gem 'capybara-webkit'
-  gem 'capybara'
+  # gem 'capybara-webkit', '1.8.0'
+  # gem 'capybara'
   gem 'minitest-reporters', '1.0.5'
   gem 'mini_backtrace',     '0.1.3'
   gem 'guard-minitest',     '2.3.1'
