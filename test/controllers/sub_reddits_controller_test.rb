@@ -8,20 +8,29 @@ class SubRedditsControllerTest < ActionController::TestCase
 
   test "index shows all subreddits" do
   	get :index
-
   	assert_response :success
   end
 
-  test "show shows subreddit" do
-  	get :show, id: @sub_reddit
-
+  test "show shows one certain subreddit" do
+  	get :show, id: @sub_reddit.id
   	assert_response :success
   end
 
-  test "new shows create subreddit" do
-  	get :new
+  test "create should create a subreddit" do
+    assert_difference 'SubReddit.count', 1 do
+      post :create, id: @sub_reddit.id, title: "New Title", description: "New Description"
+    end
+  end
 
-  	assert_response :success
+  test "update should update sub_reddit info" do
+    put :update, id: @sub_reddit, title: "New Title", description: "New Description"
+    assert_response :success
+  end
+
+  test "destroy should delete a sub_reddit" do
+    assert_difference 'SubReddit.count', -1 do
+      delete :destroy, id: @sub_reddit
+    end
   end
 
   test "Get subreddit by slug" do

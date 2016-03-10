@@ -3,7 +3,6 @@ class SubRedditsController < ApplicationController
 	def index
 		@sub_reddit = SubReddit.all
 		render json: {status: 200, subreddits: @sub_reddit}
-		#aaaa
 	end
 
 	def show
