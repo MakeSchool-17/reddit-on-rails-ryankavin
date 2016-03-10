@@ -11,6 +11,11 @@ class UsersController < ApplicationController
     render json: {status: 200, user: @user}
   end
 
+  def create
+    @user = User.create(username: params[:username], email: params[:email], password: params[:password])
+    render json: {status: 200, user: @user}
+  end
+
 
 
 end
