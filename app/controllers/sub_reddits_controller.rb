@@ -11,7 +11,7 @@ class SubRedditsController < ApplicationController
 	# end
 
 	def create
-		@sub_reddit = SubReddit.create(sub_reddit_params)
+		@sub_reddit = SubReddit.new(sub_reddit_params)
 		if @sub_reddit.save
 			render json: {created_subreddits: @sub_reddit}, status: 201
 		else
@@ -31,7 +31,7 @@ class SubRedditsController < ApplicationController
 	def update
 		@sub_reddit = SubReddit.find(params[:id])
 		if @sub_reddit.nil?
-			render json: {error: "SubReddit with certain title not found" }, status: 503
+			render json: {error: "SubReddit with certain id cannot be found" }, status: 503
 		else
 			if @sub_reddit.update(sub_reddit_params)
 				render json: {updated_subreddit: @sub_reddit}, status: 201
@@ -43,7 +43,12 @@ class SubRedditsController < ApplicationController
 
 	def show_by_slug
 		slug = params[:slug]
-		@sub_reddit = SubReddit.find_by(slug: slug)
+		begin
+			@sub_reddit = SubReddit.find_by(slug: slug)
+		rescue ActiveRecord::RecordNotFound => e
+			@sub_reddit = nil
+		end
+
 		if @sub_reddit != nil
 			render json: {subreddits: @sub_reddit}, status: 200
 		else
@@ -54,8 +59,8 @@ class SubRedditsController < ApplicationController
 
 	private
 
-	    def sub_reddit_params
-	      params.require(:sub_reddit).permit(:title, :description)
-	    end
+    def sub_reddit_params
+      params.require(:sub_reddit).permit(:title, :description)
+    end
 
 end

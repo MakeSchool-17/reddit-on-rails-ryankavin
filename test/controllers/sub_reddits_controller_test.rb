@@ -11,11 +11,6 @@ class SubRedditsControllerTest < ActionController::TestCase
   	assert_response :success
   end
 
-  # test "show shows one certain subreddit" do
-  # 	get :show, id: @sub_reddit.id
-  # 	assert_response :success
-  # end
-
   test "create should create a subreddit" do
     assert_difference 'SubReddit.count', 1 do
       post :create, sub_reddit: { title: "New Title", description: "New Description"}
