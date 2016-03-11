@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     rescue ActiveRecord::RecordNotFound => e
       @user = nil
     end
-    
+
     if !@user.nil?
       render json: {user: @user}, status: 200
     else
