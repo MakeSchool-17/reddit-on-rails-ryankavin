@@ -6,8 +6,17 @@ class PostsController < ApplicationController
 	end
 
 	def show
-		@post = Post.find(params[:id])
-		render json: {post: @post}, status: 200
+		begin
+			@post = Post.find(params[:id])
+		rescue ActiveRecord::RecordNotFound => e
+			@post = nil
+		end
+
+		if !@post.nil?
+			render json: {post: @post}, status: 200
+		else
+			render json: {error: "Unable to find post with id #{params[:id]}"}, status: 404
+		end
 	end
 
 	def create
@@ -20,14 +29,32 @@ class PostsController < ApplicationController
 	end
 
 	def update
-		@post = Post.find(params[:id])
-		@post.update(title: params[:title], content: params[:content])
-		render json: {post: @post}, status: 201
+		begin
+			@post = Post.find(params[:id])
+		rescue ActiveRecord::RecordNotFound => e
+			@post = nil
+		end
+
+		if !@post.nil?
+			@post.update(title: params[:title], content: params[:content])
+			render json: {post: @post}, status: 201
+		else
+			render json: {error: "Unable to find post with id #{params[:id]}"}, status: 404
+		end
 	end
 
 	def destroy
-		@post = Post.find(params[:id])
-		@post.destroy
-		render json: {post: @post}, status: 204
+		begin
+			@post = Post.find(params[:id])
+		rescue ActiveRecord::RecordNotFound => e
+			@post = nil
+		end
+
+		if !@post.nil?
+			@post.destroy
+			render json: {post: @post}, status: 204
+		else
+			render json: {error: "Unable to find post with id #{params[:id]}"}, status: 404
+		end
 	end
 end

@@ -13,12 +13,19 @@ class PostsControllerTest < ActionController::TestCase
   test "index returns all posts" do
   	@response = get :index
   	assert_equal 2, json_response['posts'].count
+  	assert_response :success
   end
 
   test "show returns post by id" do
   	@response = get :show, id: @post_one.id
   	assert_equal "post_one", json_response['post']['title']
-  endd
+  end
+
+  test "show returns error if post does not exist" do
+  	@response = get :show, id: 12
+  	assert_response :missing
+  	assert_equal "Unable to find post with id 12", json_response['error']
+  end
 
   test "create adds new post" do
   	assert_difference 'Post.count', 1 do
@@ -38,9 +45,21 @@ class PostsControllerTest < ActionController::TestCase
   	assert_equal "some content changed", Post.find(@post_one.id).content
   end
 
+  test "update returns error if post not found" do
+  	@response = put :update, id: 12, title: "post_one", content: "some content changed"
+  	assert_response :missing
+  	assert_equal "Unable to find post with id 12", json_response['error']
+  end
+
   test "delete deletes post" do
   	assert_difference 'Post.count', -1 do
   		delete :destroy, id: @post_one.id
   	end
+  end
+
+  test "delete returns error if post not found" do
+  	@response = delete :destroy, id: 12
+  	assert_response :missing
+  	assert_equal "Unable to find post with id 12", json_response['error']
   end
 end
