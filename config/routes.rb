@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :posts
+  resources :comments
   resources :sub_reddits
   resources :users
 
