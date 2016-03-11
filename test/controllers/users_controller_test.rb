@@ -12,18 +12,18 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "show returns one user for certain ID" do
-    get :show, id: @user
+    get :show, id: @user.id
     assert_response :success
   end
 
   test "should get create" do
     assert_difference 'User.count', 1 do
-      post :create, id: @user.id, username: "Kavin", email: "dnsaudada@naver.com", password: "14141414"
+      post :create, user: { username: "Kavin", email: "dnsaudada@naver.com", password: "14141414" }
     end
   end
 
   test "update should update user info" do
-    put :update, id: @user, username: "Kavin", email: "dnsaudada@naver.com", password: "14141414"
+    put :update, id: @user, user: { username: "Kavin", email: "dnsaudada@naver.com", password: "14141414" }
     assert_response :success
   end
 
