@@ -2,6 +2,8 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
+    # post "/users", :user => {:username => "Ryan", :email => "example@makeschool.com", :password => "foobar", :password_confirmation => "foobar"}
+    # @user = User.find_by(email: "example@makeschool.com")
     @user = User.new(username: "Ryan", email: "example@makeschool.com", password: "foobar", password_confirmation: "foobar")
     @subReddit = SubReddit.new(title: "Title", description: "Description.")
     @post = Post.new(title: "Placeholder Title", content: "Lorem ipsum...")
