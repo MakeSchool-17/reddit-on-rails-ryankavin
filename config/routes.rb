@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :posts, :except => [:new, :edit]
   resources :sub_reddits, only: [:index, :create, :update, :destroy]
   resources :users, only: [:index, :show, :create, :update, :destroy]

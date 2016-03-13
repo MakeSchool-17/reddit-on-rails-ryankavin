@@ -1,4 +1,5 @@
 class SubRedditsController < ApplicationController
+	before_action :authenticate_user!
 
 	def index
 		@sub_reddit = SubReddit.all
