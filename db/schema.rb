@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313225248) do
+ActiveRecord::Schema.define(version: 20160313235224) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "content"
@@ -24,10 +24,8 @@ ActiveRecord::Schema.define(version: 20160313225248) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.string   "content"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "sub_reddit_id"
-    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sub_reddits", force: :cascade do |t|
@@ -41,6 +39,10 @@ ActiveRecord::Schema.define(version: 20160313225248) do
   add_index "sub_reddits", ["title"], name: "index_sub_reddits_on_title", unique: true
 
   create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "password_digest"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -51,7 +53,6 @@ ActiveRecord::Schema.define(version: 20160313225248) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
